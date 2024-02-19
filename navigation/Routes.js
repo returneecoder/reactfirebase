@@ -7,9 +7,9 @@ import AppStack from './AppStack';
 import auth from '@react-native-firebase/auth';
 
 const Routes = () => {
-  console.log("routes")
+  
   const {user,setUser} = useContext(AuthContext)
-  console.log(user)
+ 
   const [initializing, setInitializing] = useState(true);
  
   function onAuthStateChanged(user) {

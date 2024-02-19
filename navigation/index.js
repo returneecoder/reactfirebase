@@ -4,7 +4,7 @@ import Routes from './Routes';
 import { AuthProvider } from './AuthProvider';
 
 const Providers = () => {
-  console.log("providers")
+ 
   return (
    <AuthProvider>
      <Routes />

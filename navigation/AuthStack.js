@@ -11,8 +11,7 @@ import SignupScreen from '../screens/SignupScreen';
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
-  console.log("inside Auth stack")
-  const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
   let routeName;
 
   useEffect(() => {

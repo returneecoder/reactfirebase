@@ -1,17 +1,34 @@
 /* eslint-disable */
 import React, {useContext, useState} from 'react';
-import {View, Text, TouchableOpacity, Platform, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, Platform, StyleSheet,Alert} from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import {AuthContext} from '../navigation/AuthProvider';
 
 const SignupScreen = ({navigation}) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const {register} = useContext(AuthContext);
+
+  const signIn = () => {                          // <= Added this function
+    const strongRegex = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+    if (!strongRegex.test(email)) {
+        Alert.alert("email invalid")
+        return false;
+    } else if ((password.length <8 )||(password !== confirmPassword)) {
+      Alert.alert("Passwords do not match or are too short.")
+      
+        return false;
+    }
+    else {
+      register(email, password);            // <= Use the context's login function here instead
+      }  // <= Calling the method provided by AuthProvider to handle
+  
+}
+
 
   return (
     <View style={styles.container}>
@@ -30,6 +47,7 @@ const SignupScreen = ({navigation}) => {
       <FormInput
         labelValue={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
+       /*  onChangeText={(userPassword) => textInputChange(userPassword)} */
         placeholderText="Password"
         iconType="lock"
         secureTextEntry={true}
@@ -45,7 +63,7 @@ const SignupScreen = ({navigation}) => {
 
       <FormButton
         buttonTitle="Sign Up"
-        onPress={() => register(email, password)}
+        onPress={() => signIn()}
       />
 
       <View style={styles.textPrivate}>
