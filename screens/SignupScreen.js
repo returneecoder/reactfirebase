@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, {useContext, useState} from 'react';
-import {View, Text, TouchableOpacity, Platform, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, Platform, StyleSheet,Alert} from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
@@ -12,6 +12,21 @@ const SignupScreen = ({navigation}) => {
   const [confirmPassword, setConfirmPassword] = useState();
 
   const {register,googleLogin,fbLogin} = useContext(AuthContext);
+
+  const signIn = () => {                          // <= Added this function
+    const strongRegex = new RegExp("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+
+    if (!strongRegex.test(email)) {
+        Alert.alert("check your email")
+        return false;
+    } else if( (password.length < 8) || (password !== confirmPassword)){
+      Alert.alert("check your password");
+        return false;
+    }
+    else {
+      register(email, password)
+    }
+}
 
   return (
     <View style={styles.container}>
@@ -45,7 +60,7 @@ const SignupScreen = ({navigation}) => {
 
       <FormButton
         buttonTitle="Sign Up"
-        onPress={() => register(email, password)}
+        onPress={() => signIn()}
       />
 
       <View style={styles.textPrivate}>

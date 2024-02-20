@@ -18,7 +18,7 @@ const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  //const {login, googleLogin, fbLogin} = useContext(AuthContext);
+  
   const {login,googleLogin,fbLogin} = useContext(AuthContext);
   return (
     <ScrollView contentContainerStyle={styles.container}>
