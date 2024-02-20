@@ -12,7 +12,20 @@
           "package_name": "com.reactfirebase"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "455002448645-vga95uvm9h0cja2pnk15vcq1qcicvlnc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.reactfirebase",
+            "certificate_hash": "bef4850d6236e9b7ddd3e4b6f3b6f17298196bfd"
+          }
+        },
+        {
+          "client_id": "455002448645-l1nhaqn9eq5egon11tdtqg7se2uvtbbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDoCo97B2vzWDWNQJtH1KkR41hla609E9g"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455002448645-l1nhaqn9eq5egon11tdtqg7se2uvtbbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
