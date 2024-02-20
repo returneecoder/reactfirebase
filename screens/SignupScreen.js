@@ -11,7 +11,7 @@ const SignupScreen = ({navigation}) => {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
 
-  const {register,googleLogin} = useContext(AuthContext);
+  const {register,googleLogin,fbLogin} = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -70,7 +70,7 @@ const SignupScreen = ({navigation}) => {
             btnType="facebook"
             color="#4867aa"
             backgroundColor="#e6eaf4"
-            onPress={() => {}}
+            onPress={() => fbLogin()}
           />
     
           <SocialButton

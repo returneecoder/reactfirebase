@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">reactfirebase</string>
+    
+<string name="facebook_app_id">775347684449230</string>
+<string name="fb_login_protocol_scheme">fb775347684449230</string>
+<string name="facebook_client_token">bb49c848f8ccd4e4c7031f277d103842</string>
+
+
 </resources>

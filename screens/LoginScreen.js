@@ -19,7 +19,7 @@ const LoginScreen = ({navigation}) => {
   const [password, setPassword] = useState();
 
   //const {login, googleLogin, fbLogin} = useContext(AuthContext);
-  const {login,googleLogin} = useContext(AuthContext);
+  const {login,googleLogin,fbLogin} = useContext(AuthContext);
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image
@@ -62,7 +62,7 @@ const LoginScreen = ({navigation}) => {
             btnType="facebook"
             color="#4867aa"
             backgroundColor="#e6eaf4"
-            /* onPress={() => fbLogin()} */
+            onPress={() => fbLogin()}
           />
 
           <SocialButton
