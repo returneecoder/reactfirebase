@@ -24,6 +24,22 @@ const PostCard = ({item}) => {
 
     likeIcon = item.liked ? 'heart' : 'heart-outline';
   likeIconColor = item.liked ? '#2e64e5' : '#333';
+  if (item.likes == 1) {
+    likeText = '1 Like';
+  } else if (item.likes > 1) {
+    likeText = item.likes + ' Likes';
+  } else {
+    likeText = 'Like';
+  }
+  
+  if(item.comments === 1){
+    commentText= "1 comment";
+  } else if (item.comments >1){
+    commentText= item.comments + 'Comments';
+  }else{
+    commentText ='Comment'
+  }
+    
   return (
     <Card>
         <UserInfo>
@@ -40,13 +56,13 @@ const PostCard = ({item}) => {
        
        {/*  <PostImg source={require('../assets/posts/post-img-1.png')} /> */}
         <InteractionWrapper>
-          <Interaction>
-            <Ionicons name="heart-outline" size={25} color="black" />
-            <InteractionText >Like</InteractionText>
+          <Interaction active={item.liked}>
+            <Ionicons name={likeIcon} size={25} color={likeIconColor} />
+            <InteractionText active={item.liked} >{likeText}</InteractionText>
           </Interaction>
           <Interaction>
           <Ionicons name="chatbubble-outline" size={20} color="black" />
-          <InteractionText>Comment</InteractionText>
+          <InteractionText>{commentText}t</InteractionText>
         </Interaction>
       </InteractionWrapper>
     </Card>

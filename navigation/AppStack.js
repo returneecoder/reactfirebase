@@ -50,7 +50,7 @@ const FeedStack = ({navigation}) => (
       name="AddPost"
       component={AddPostScreen}
       options={{
-        title: '',
+        title: 'add post ',
         headerTitleAlign: 'center',
         headerStyle: {
           backgroundColor: '#2e64e515',
