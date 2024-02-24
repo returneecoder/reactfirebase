@@ -17,10 +17,13 @@ import {
     Divider,
     UserInfoText,
   } from '../styles/FeedStyles';
-
+import { useContext } from 'react'
+import { AuthContext } from '../navigation/AuthProvider';
  
 
-const PostCard = ({item}) => {
+const PostCard = ({item,onDelete}) => {
+
+  const{user,logout} = useContext(AuthContext)
 
     likeIcon = item.liked ? 'heart' : 'heart-outline';
   likeIconColor = item.liked ? '#2e64e5' : '#333';
@@ -63,8 +66,13 @@ const PostCard = ({item}) => {
           <Interaction>
           <Ionicons name="chatbubble-outline" size={20} color="black" />
           <InteractionText>{commentText}t</InteractionText>
-        </Interaction>
-      </InteractionWrapper>
+          </Interaction>
+          {user.uid == item.userId ? (
+          <Interaction onPress={() => onDelete(item.id)}>
+            <Ionicons name="trash-bin-sharp" size={25} />
+          </Interaction>
+        ) : null}
+        </InteractionWrapper>
     </Card>
   )
 }
