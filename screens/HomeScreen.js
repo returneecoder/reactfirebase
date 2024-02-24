@@ -1,10 +1,11 @@
 /* eslint-disable */
 import {StyleSheet, Text, View, FlatList} from 'react-native';
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import FormButton from '../components/FormButton';
 import {AuthContext} from '../navigation/AuthProvider';
 import {useContext} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import firestore from '@react-native-firebase/firestore'
 
 import PostCard from '../components/PostCard';
 
@@ -87,11 +88,51 @@ const Posts = [
   },
 ];
 const HomeScreen = () => {
+  const [posts, setPosts] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [deleted, setDeleted] = useState(false);
+  useEffect( () => {
+const fetchPosts  =async ()=> {
+  try {
+    const list =[];
+   await  firestore().collection('posts')
+    .get()
+    .then(
+      (querySnapshot) =>{
+            console.log(`query snapshot ${querySnapshot.size}`)
+            querySnapshot.forEach((doc)=>{
+            const {userId,post,postImg,postTime,likes,comments}= doc.data();
+            list.push({
+              id: doc.id,
+              userId,
+                userName: 'Christy Alex',
+                userImg: 'https://lh5.googleusercontent.com/-b0PKyNuQv5s/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclxAM4M1SCBGAO7Rp-QP6zgBEUkOQ/s96-c/photo.jpg',
+                postTime: postTime,
+                post,
+                postImg,
+                liked: false,
+                likes,
+                comments,
+            })
+      })
+  })
+setPosts(list)
+if(loading){
+  setLoading(false)
+}
+}
+  catch (e){
+console.log(e)
+  }
+
+}
+fetchPosts()
+  }, []);
   const {user, logout} = useContext(AuthContext);
   return (
     <Container>
       <FlatList
-      data={Posts}
+      data={posts}
       renderItem={({item})=><PostCard item={item}/>}
       keyExtractor={item =>item.id}
       showsVerticalScrollIndicator= {false}
